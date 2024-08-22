@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  mysql1:
+    image: mysql:8.0
+    container_name: mysql_users
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: users
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: adminpassword
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_users_data:/var/lib/mysql
+    networks:
+      - mysql_network
+
+  mysql2:
+    image: mysql:8.0
+    container_name: mysql_products
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: products
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: adminpassword
+    ports:
+      - "3308:3306"
+    volumes:
+      - mysql_products_data:/var/lib/mysql
+    networks:
+      - mysql_network
+
+  mysql3:
+    image: mysql:8.0
+    container_name: mysql_orders
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: orders
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: adminpassword
+    ports:
+      - "3309:3306"
+    volumes:
+      - mysql_orders_data:/var/lib/mysql
+    networks:
+      - mysql_network
+
+volumes:
+  mysql_users_data:
+  mysql_products_data:
+  mysql_orders_data:
+
+networks:
+  mysql_network:
+    driver: bridge
