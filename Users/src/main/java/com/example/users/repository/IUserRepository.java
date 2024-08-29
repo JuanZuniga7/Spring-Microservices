@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface IUserRepository extends JpaRepository<User, Long> {
-    @Query(value = "SELECT * FROM users WHERE username = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM users WHERE email = ?1", nativeQuery = true)
     User findByUserName(String userName);
+    User findByEmail(String email);
 }

@@ -11,6 +11,7 @@ public class UsersApplication {
 
 	@RequestMapping("/")
 	public String home() {
+		System.out.println("Welcome to the Users Application");
 		return "Welcome to the Users Application";
 	}
 
